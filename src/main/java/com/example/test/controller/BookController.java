@@ -23,11 +23,12 @@ public class BookController {
         return bookService.createBook(requestDto);
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/books/{id}")
     public BookEntity getBook(@PathVariable long id) {
         return bookService.getBook(id);
     }
 
+    @GetMapping("/books")
     public List<BookEntity> getBooks() {
         return null; // TODO
     }

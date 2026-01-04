@@ -35,8 +35,6 @@ public class BookService {
     }
 
     public List<BookEntity> getBooks() {
-
-        return null;
+        return bookRepository.findAll();
     }
-
 }
