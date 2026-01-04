@@ -4,6 +4,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.test.model.BookEntity;
 import com.example.test.repository.BookRepository;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.example.test.dto.CreateBookRequestDto;;
 
 @RestController
 public class BookController {
@@ -13,11 +17,12 @@ public class BookController {
         this.bookRepository = bookRepository;
     }
 
-    public BookEntity createBook(String title, String author, String isbn) {
+    @PostMapping("/books")
+    public BookEntity createBook(@RequestBody CreateBookRequestDto requestDto) {
         BookEntity bookEntity = new BookEntity();
-        bookEntity.setTitle(title);
-        bookEntity.setAuthor(author);
-        bookEntity.setIsbn(isbn);
+        bookEntity.setTitle(requestDto.getTitle());
+        bookEntity.setAuthor(requestDto.getAuthor());
+        bookEntity.setIsbn(requestDto.getIsbn());
         return bookRepository.save(bookEntity);
     }
 }
