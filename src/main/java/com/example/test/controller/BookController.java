@@ -7,8 +7,10 @@ import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.example.test.dto.CreateBookRequestDto;
+import com.example.test.dto.UpdateBookRequestDto;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,5 +44,10 @@ public class BookController {
     public void DeleteBook(@PathVariable long id) {
         System.out.println("Removed book - id: " + id);
         bookService.deleteBook(id);
+    }
+
+    @PutMapping("/{id}")
+    public void UpdateBook(@PathVariable long id, @RequestBody UpdateBookRequestDto updateBookRequestDto) {
+        bookService.updateBook(id, updateBookRequestDto);
     }
 }

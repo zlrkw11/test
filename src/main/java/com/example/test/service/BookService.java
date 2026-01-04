@@ -1,11 +1,12 @@
 package com.example.test.service;
 
-// import java.util.Optional;
+import java.util.Optional;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import com.example.test.repository.BookRepository;
 import com.example.test.model.BookEntity;
-import com.example.test.dto.CreateBookRequestDto;;
+import com.example.test.dto.CreateBookRequestDto;
+import com.example.test.dto.UpdateBookRequestDto;;
 
 @Service
 public class BookService {
@@ -40,5 +41,17 @@ public class BookService {
 
     public void deleteBook(long id) {
         bookRepository.deleteById(id);
+    }
+
+    public BookEntity updateBook(long id, UpdateBookRequestDto requestDto) {
+        Optional<BookEntity> optionalBookEntity = bookRepository.findById(id);
+        if (optionalBookEntity.isEmpty()) {
+            throw new RuntimeException("Book not found!");
+        }
+        BookEntity bookEntity = optionalBookEntity.get();
+        bookEntity.setAuthor(requestDto.getAuthor());
+        bookEntity.setTitle(requestDto.getTitle());
+        bookEntity.setIsbn(requestDto.getIsbn());
+        return bookRepository.save(bookEntity);
     }
 }
