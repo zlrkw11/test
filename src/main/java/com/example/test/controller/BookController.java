@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import com.example.test.dto.CreateBookRequestDto;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class BookController {
@@ -19,6 +21,11 @@ public class BookController {
     @PostMapping("/books")
     public BookEntity createBook(@RequestBody CreateBookRequestDto requestDto) {
         return bookService.createBook(requestDto);
+    }
+
+    @GetMapping("/users/{id}")
+    public BookEntity getBook(@PathVariable long id) {
+        return bookService.getBook(id);
     }
 
     public List<BookEntity> getBooks() {

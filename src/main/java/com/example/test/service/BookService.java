@@ -1,6 +1,7 @@
 package com.example.test.service;
 
-import java.util.Optional;
+// import java.util.Optional;
+import java.util.List;
 import org.springframework.stereotype.Service;
 import com.example.test.repository.BookRepository;
 import com.example.test.model.BookEntity;
@@ -31,6 +32,11 @@ public class BookService {
         // return optionalBookEntity.get();
         return bookRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Book not found!"));
+    }
+
+    public List<BookEntity> getBooks() {
+
+        return null;
     }
 
 }
