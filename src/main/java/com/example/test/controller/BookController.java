@@ -3,9 +3,9 @@ package com.example.test.controller;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.test.model.BookEntity;
 import com.example.test.service.BookService;
+import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
 import com.example.test.dto.CreateBookRequestDto;
 
 @RestController
@@ -19,5 +19,9 @@ public class BookController {
     @PostMapping("/books")
     public BookEntity createBook(@RequestBody CreateBookRequestDto requestDto) {
         return bookService.createBook(requestDto);
+    }
+
+    public List<BookEntity> getBooks() {
+        return null; // TODO
     }
 }
