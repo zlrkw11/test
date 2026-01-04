@@ -37,4 +37,8 @@ public class BookService {
     public List<BookEntity> getBooks() {
         return bookRepository.findAll();
     }
+
+    public void deleteBook(long id) {
+        bookRepository.deleteById(id);
+    }
 }
