@@ -3,6 +3,9 @@ package com.example.test.controller;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.test.model.BookEntity;
 import com.example.test.service.BookService;
+
+import jakarta.validation.Valid;
+
 import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -47,7 +50,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public void UpdateBook(@PathVariable long id, @RequestBody UpdateBookRequestDto updateBookRequestDto) {
+    public void UpdateBook(@PathVariable long id, @Valid @RequestBody UpdateBookRequestDto updateBookRequestDto) {
         bookService.updateBook(id, updateBookRequestDto);
     }
 }
