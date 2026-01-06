@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import com.example.test.dto.CreateBookRequestDto;
 import com.example.test.dto.UpdateBookRequestDto;
+import com.example.test.dto.BookDto;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,17 +32,17 @@ public class BookController {
     }
 
     @PostMapping
-    public BookEntity createBook(@RequestBody CreateBookRequestDto requestDto) {
+    public BookDto createBook(@RequestBody CreateBookRequestDto requestDto) {
         return bookService.createBook(requestDto);
     }
 
     @GetMapping("/{id}")
-    public BookEntity getBook(@PathVariable long id) {
+    public BookDto getBook(@PathVariable long id) {
         return bookService.getBook(id);
     }
 
     @GetMapping
-    public List<BookEntity> getBooks() {
+    public Page<BookDto> getBooks(Pageable pageable) {
         return bookService.getBooks();
     }
 
